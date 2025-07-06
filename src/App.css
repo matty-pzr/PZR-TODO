@@ -156,59 +156,7 @@ select {
 	font-family: inherit;
 }
 
-/* Manual Dark Mode Styles */
-.dark-mode .app {
-	color: #f0f0f0;
-}
-
-.dark-mode h1 {
-	color: #f0f0f0;
-}
-
-.dark-mode .todo-input {
-	background-color: #2a2a2a;
-	border-color: #444;
-	color: #f0f0f0;
-}
-
-.dark-mode .todo-input:focus {
-	border-color: #66ff66;
-	box-shadow: 0 0 0 3px rgba(102, 255, 102, 0.1);
-}
-
-.dark-mode .todos-list {
-	background-color: #1a1a1a;
-}
-
-.dark-mode .todo-item {
-	background-color: #2a2a2a;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.dark-mode .todo-item:hover {
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-.dark-mode .empty-message {
-	color: #888;
-}
-
-.dark-mode .add-button {
-	background-color: #66ff66;
-	color: #1a1a1a;
-}
-
-.dark-mode .add-button:hover {
-	background-color: #55ee55;
-}
-
-.dark-mode .delete-button {
-	background-color: #ff5555;
-}
-
-.dark-mode .delete-button:hover {
-	background-color: #ff3333;
-}
+/* Dark mode styles removed - productivity theme only */
 
 /* Tablet styles (max-width: 768px) - Desktop first */
 @media (max-width: 768px) {
@@ -316,9 +264,6 @@ select {
 	outline-offset: 2px;
 }
 
-.dark-mode *:focus-visible {
-	outline-color: #66ff66;
-}
 
 /* Animations for smooth interactions */
 @keyframes fadeIn {
@@ -350,13 +295,4 @@ select {
 		border: 1px solid #ddd;
 	}
 	
-	.dark-mode {
-		color: #000 !important;
-		background: #fff !important;
-	}
-	
-	.dark-mode .todo-item {
-		background: #fff !important;
-		color: #000 !important;
-	}
 }

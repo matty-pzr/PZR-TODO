@@ -1,14 +1,16 @@
 /* Productivity-Focused Theme */
 /* Clean, professional design with priority indicators and organization features */
 
-/* Main app container */
+/* Main app container - fullscreen */
 .productivity .app {
 	width: 100%;
 	margin: 0;
-	padding: 2.5rem 8%;
+	padding: 2rem;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	background: #f5f7fa;
 	min-height: 100vh;
+	max-width: 100%;
+	box-sizing: border-box;
 }
 
 /* App title */
@@ -122,7 +124,7 @@
 	border: 2px dashed #dfe6ec;
 }
 
-/* Individual todo item */
+/* Individual todo item with colored border */
 .productivity .todo-item {
 	display: flex;
 	justify-content: space-between;
@@ -131,42 +133,30 @@
 	margin-bottom: 10px;
 	background-color: #fafbfc;
 	border-radius: 8px;
-	border: 1px solid #e1e8ed;
+	border: 2px solid #95a5a6;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 	transition: all 0.2s ease;
 	position: relative;
-	padding-left: 28px;
 }
 
-/* Priority indicator */
-.productivity .todo-item::before {
-	content: '';
-	position: absolute;
-	left: 8px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: #95a5a6;
+/* Removed LED indicator - will use border instead */
+
+/* High priority items - red border */
+.productivity .todo-item:nth-child(odd) {
+	border-color: #e74c3c;
+	box-shadow: 0 1px 3px rgba(231, 76, 60, 0.2);
 }
 
-/* High priority items */
-.productivity .todo-item:nth-child(odd)::before {
-	background: #e74c3c;
-	box-shadow: 0 0 4px rgba(231, 76, 60, 0.4);
+/* Medium priority items - orange border */
+.productivity .todo-item:nth-child(even) {
+	border-color: #f39c12;
+	box-shadow: 0 1px 3px rgba(243, 156, 18, 0.2);
 }
 
-/* Medium priority items */
-.productivity .todo-item:nth-child(even)::before {
-	background: #f39c12;
-	box-shadow: 0 0 4px rgba(243, 156, 18, 0.4);
-}
-
-/* Low priority items */
-.productivity .todo-item:nth-child(3n)::before {
-	background: #27ae60;
-	box-shadow: 0 0 4px rgba(39, 174, 96, 0.4);
+/* Low priority items - green border */
+.productivity .todo-item:nth-child(3n) {
+	border-color: #27ae60;
+	box-shadow: 0 1px 3px rgba(39, 174, 96, 0.2);
 }
 
 .productivity .todo-item:hover {
@@ -198,18 +188,18 @@
 	background: #f8f9fa;
 }
 
-.productivity .todo-item:has(.todo-text.completed)::before {
-	background: #95a5a6 !important;
+.productivity .todo-item:has(.todo-text.completed) {
+	border-color: #95a5a6 !important;
 	box-shadow: none !important;
 }
 
-/* Delete button */
+/* Delete button - darker */
 .productivity .delete-button {
 	padding: 8px 14px;
 	font-size: 13px;
-	background-color: #ecf0f1;
-	color: #7f8c8d;
-	border: 1px solid #dfe6ec;
+	background-color: #7f8c8d;
+	color: white;
+	border: 1px solid #6c7a7d;
 	border-radius: 5px;
 	cursor: pointer;
 	transition: all 0.2s ease;
@@ -233,26 +223,70 @@
 	font-weight: normal;
 }
 
-/* Category tags (visual only) */
-.productivity .todo-text::after {
-	content: " #work";
-	font-size: 12px;
-	color: #3498db;
-	background: #ebf5fb;
-	padding: 2px 8px;
-	border-radius: 12px;
-	margin-left: 8px;
-	font-weight: 500;
+/* Remove hashtag styles - no longer needed */
+
+/* Media upload button */
+.productivity .media-upload-btn {
+	padding: 8px 12px;
+	font-size: 20px;
+	background-color: #ecf0f1;
+	border: 1px solid #dfe6ec;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	margin: 0 8px;
 }
 
-.productivity .todo-item:nth-child(even) .todo-text::after {
-	content: " #personal";
-	color: #9b59b6;
-	background: #f4ecf7;
+.productivity .media-upload-btn:hover {
+	background-color: #3498db;
+	border-color: #3498db;
 }
 
-.productivity .todo-item:nth-child(3n) .todo-text::after {
-	content: " #urgent";
-	color: #e74c3c;
-	background: #fadbd8;
+/* Media display container */
+.productivity .todo-media {
+	display: flex;
+	gap: 8px;
+	margin: 0 10px;
+	flex-wrap: wrap;
+	max-width: 300px;
+}
+
+/* Individual media item */
+.productivity .media-item {
+	position: relative;
+	width: 60px;
+	height: 60px;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.productivity .media-item img,
+.productivity .media-item video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Remove media button */
+.productivity .remove-media {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	background: rgba(231, 76, 60, 0.9);
+	color: white;
+	border: none;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	font-size: 16px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.2s;
+}
+
+.productivity .media-item:hover .remove-media {
+	opacity: 1;
 }

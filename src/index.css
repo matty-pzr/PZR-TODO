@@ -169,38 +169,7 @@ input, textarea, select {
 	}
 }
 
-/* Manual Dark mode support - applied when .dark-mode class is present */
-.dark-mode {
-	--color-text: rgba(255, 255, 255, 0.87);
-	--color-text-light: rgba(255, 255, 255, 0.6);
-	--color-bg: #242424;
-	--color-bg-secondary: #1a1a1a;
-	--color-border: #444;
-}
-
-.dark-mode body {
-	color: var(--color-text);
-	background-color: var(--color-bg);
-}
-
-.dark-mode a {
-	color: #66ff66;
-}
-
-.dark-mode a:hover {
-	color: #88ff88;
-}
-
-.dark-mode button {
-	background-color: #1a1a1a;
-	border-color: #444;
-	color: var(--color-text);
-}
-
-.dark-mode button:hover {
-	border-color: #646cff;
-	background-color: #2a2a2a;
-}
+/* Dark mode removed - productivity theme only */
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {

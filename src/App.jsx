@@ -1,16 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import './responsive.css' // Import responsive utilities
-// Import all theme CSS files
-import './themes/minimalist.css'
-import './themes/playful.css'
-import './themes/dark.css'
-import './themes/productivity.css'
-import './themes/productivity-blue.css'
-import './themes/productivity-kanban.css'
-import './themes/productivity-analytics.css'
-import './themes/productivity-minimal.css'
-import './themes/productivity-team.css'
+import './themes/productivity.css' // Productivity theme only
 
 function App() {
 	// State to hold our list of todos
@@ -20,22 +11,20 @@ function App() {
 	// State for the input field where users type new todos
 	const [inputValue, setInputValue] = useState('')
 	
-	// State for the current theme
-	const [currentTheme, setCurrentTheme] = useState('default')
-	
-	// State for dark mode
-	const [isDarkMode, setIsDarkMode] = useState(false)
+	// Productivity theme is always active
+	const currentTheme = 'productivity'
 
 	// Function to add a new todo
 	const addTodo = () => {
 		// Don't add empty todos
 		if (inputValue.trim() === '') return
 		
-		// Create a new todo object
+		// Create a new todo object with media support
 		const newTodo = {
 			id: Date.now(), // Simple ID using timestamp
 			text: inputValue,
-			completed: false
+			completed: false,
+			media: [] // Array to store image/video URLs
 		}
 		
 		// Add the new todo to our list
@@ -69,61 +58,40 @@ function App() {
 		}
 	}
 
+	// Function to handle media upload
+	const handleMediaUpload = (todoId, files) => {
+		const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'video/mp4', 'video/webm']
+		
+		Array.from(files).forEach(file => {
+			if (validTypes.includes(file.type)) {
+				const reader = new FileReader()
+				reader.onload = (e) => {
+					setTodos(todos.map(todo => 
+						todo.id === todoId 
+							? { ...todo, media: [...todo.media, { url: e.target.result, type: file.type }] }
+							: todo
+					))
+				}
+				reader.readAsDataURL(file)
+			}
+		})
+	}
+
+	// Function to remove media
+	const removeMedia = (todoId, mediaIndex) => {
+		setTodos(todos.map(todo => {
+			if (todo.id === todoId) {
+				const newMedia = [...todo.media]
+				newMedia.splice(mediaIndex, 1)
+				return { ...todo, media: newMedia }
+			}
+			return todo
+		}))
+	}
+
 	return (
-		<div className={`${currentTheme} ${isDarkMode ? 'dark-mode' : ''}`}>
+		<div className={currentTheme}>
 			<div className="app">
-				{/* Theme and Dark Mode Controls */}
-				<div style={{ 
-					position: 'absolute', 
-					top: '20px', 
-					right: '20px',
-					zIndex: 1000,
-					display: 'flex',
-					gap: '10px',
-					alignItems: 'center'
-				}}>
-					{/* Dark Mode Toggle */}
-					<button
-						onClick={() => setIsDarkMode(!isDarkMode)}
-						style={{
-							padding: '8px 16px',
-							borderRadius: '6px',
-							border: '1px solid #ddd',
-							fontSize: '14px',
-							cursor: 'pointer',
-							background: isDarkMode ? '#333' : 'white',
-							color: isDarkMode ? 'white' : '#333',
-							transition: 'all 0.3s ease'
-						}}
-					>
-						{isDarkMode ? '☀️ Light' : '🌙 Dark'}
-					</button>
-					
-					{/* Theme Selector */}
-					<select 
-						value={currentTheme} 
-						onChange={(e) => setCurrentTheme(e.target.value)}
-						style={{
-							padding: '8px 16px',
-							borderRadius: '6px',
-							border: '1px solid #ddd',
-							fontSize: '14px',
-							cursor: 'pointer',
-							background: isDarkMode ? '#333' : 'white',
-							color: isDarkMode ? 'white' : '#333'
-						}}
-					>
-						<option value="default">Default Theme</option>
-						<option value="minimalist">Minimalist</option>
-						<option value="playful">Playful</option>
-						<option value="productivity">Productivity</option>
-						<option value="productivity-blue">Productivity Blue</option>
-						<option value="productivity-kanban">Productivity Kanban</option>
-						<option value="productivity-analytics">Productivity Analytics</option>
-						<option value="productivity-minimal">Productivity Minimal</option>
-						<option value="productivity-team">Productivity Team</option>
-					</select>
-				</div>
 				
 				<h1>My Todo List</h1>
 			
@@ -156,6 +124,40 @@ function App() {
 								>
 									{todo.text}
 								</span>
+								
+								{/* Media display */}
+								{todo.media && todo.media.length > 0 && (
+									<div className="todo-media">
+										{todo.media.map((media, index) => (
+											<div key={index} className="media-item">
+												{media.type.startsWith('image/') ? (
+													<img src={media.url} alt="Todo attachment" />
+												) : (
+													<video src={media.url} controls />
+												)}
+												<button 
+													onClick={() => removeMedia(todo.id, index)}
+													className="remove-media"
+												>
+													×
+												</button>
+											</div>
+										))}
+									</div>
+								)}
+								
+								{/* Media upload button */}
+								<label className="media-upload-btn">
+									📎
+									<input
+										type="file"
+										multiple
+										accept="image/*,video/*"
+										onChange={(e) => handleMediaUpload(todo.id, e.target.files)}
+										style={{ display: 'none' }}
+									/>
+								</label>
+								
 								<button 
 									onClick={() => deleteTodo(todo.id)}
 									className="delete-button"
