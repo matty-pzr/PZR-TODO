@@ -1,0 +1,258 @@
+/* Productivity-Focused Theme */
+/* Clean, professional design with priority indicators and organization features */
+
+/* Main app container */
+.productivity .app {
+	width: 100%;
+	margin: 0;
+	padding: 2.5rem 8%;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: #f5f7fa;
+	min-height: 100vh;
+}
+
+/* App title */
+.productivity h1 {
+	color: #2c3e50;
+	text-align: center;
+	margin-bottom: 2.5rem;
+	font-weight: 600;
+	font-size: 2.25rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+}
+
+.productivity h1::before {
+	content: "📋";
+	font-size: 2rem;
+}
+
+/* Add todo section */
+.productivity .add-todo-section {
+	display: flex;
+	gap: 12px;
+	margin-bottom: 2rem;
+	background: white;
+	padding: 1.75rem;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	border: 1px solid #e1e8ed;
+}
+
+/* Input field for new todos */
+.productivity .todo-input {
+	flex: 1;
+	padding: 14px 18px;
+	font-size: 16px;
+	border: 2px solid #dfe6ec;
+	border-radius: 6px;
+	outline: none;
+	background: #fafbfc;
+	transition: all 0.2s ease;
+}
+
+.productivity .todo-input:focus {
+	border-color: #3498db;
+	background: white;
+	box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* Add button */
+.productivity .add-button {
+	padding: 14px 24px;
+	font-size: 16px;
+	background-color: #3498db;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.productivity .add-button::before {
+	content: "+";
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.productivity .add-button:hover {
+	background-color: #2980b9;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Todos list container */
+.productivity .todos-list {
+	background-color: white;
+	border-radius: 10px;
+	padding: 24px;
+	min-height: 300px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	border: 1px solid #e1e8ed;
+}
+
+/* Stats section */
+.productivity .todos-list::before {
+	content: attr(data-stats);
+	display: block;
+	margin-bottom: 20px;
+	padding-bottom: 16px;
+	border-bottom: 2px solid #f0f3f7;
+	color: #7f8c8d;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+/* Empty state message */
+.productivity .empty-message {
+	text-align: center;
+	color: #95a5a6;
+	font-style: normal;
+	font-size: 16px;
+	margin-top: 3rem;
+	padding: 2rem;
+	background: #f8f9fa;
+	border-radius: 8px;
+	border: 2px dashed #dfe6ec;
+}
+
+/* Individual todo item */
+.productivity .todo-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px 18px;
+	margin-bottom: 10px;
+	background-color: #fafbfc;
+	border-radius: 8px;
+	border: 1px solid #e1e8ed;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+	transition: all 0.2s ease;
+	position: relative;
+	padding-left: 28px;
+}
+
+/* Priority indicator */
+.productivity .todo-item::before {
+	content: '';
+	position: absolute;
+	left: 8px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #95a5a6;
+}
+
+/* High priority items */
+.productivity .todo-item:nth-child(odd)::before {
+	background: #e74c3c;
+	box-shadow: 0 0 4px rgba(231, 76, 60, 0.4);
+}
+
+/* Medium priority items */
+.productivity .todo-item:nth-child(even)::before {
+	background: #f39c12;
+	box-shadow: 0 0 4px rgba(243, 156, 18, 0.4);
+}
+
+/* Low priority items */
+.productivity .todo-item:nth-child(3n)::before {
+	background: #27ae60;
+	box-shadow: 0 0 4px rgba(39, 174, 96, 0.4);
+}
+
+.productivity .todo-item:hover {
+	background-color: white;
+	border-color: #3498db;
+	box-shadow: 0 3px 8px rgba(52, 152, 219, 0.15);
+}
+
+/* Todo text */
+.productivity .todo-text {
+	flex: 1;
+	cursor: pointer;
+	user-select: none;
+	transition: all 0.3s;
+	font-size: 16px;
+	color: #2c3e50;
+	line-height: 1.5;
+}
+
+/* Completed todo style */
+.productivity .todo-text.completed {
+	text-decoration: line-through;
+	color: #95a5a6;
+	font-style: italic;
+}
+
+.productivity .todo-item:has(.todo-text.completed) {
+	opacity: 0.7;
+	background: #f8f9fa;
+}
+
+.productivity .todo-item:has(.todo-text.completed)::before {
+	background: #95a5a6 !important;
+	box-shadow: none !important;
+}
+
+/* Delete button */
+.productivity .delete-button {
+	padding: 8px 14px;
+	font-size: 13px;
+	background-color: #ecf0f1;
+	color: #7f8c8d;
+	border: 1px solid #dfe6ec;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-weight: 500;
+}
+
+.productivity .delete-button:hover {
+	background-color: #e74c3c;
+	color: white;
+	border-color: #e74c3c;
+}
+
+/* Task counter */
+.productivity h1::after {
+	content: attr(data-count);
+	font-size: 14px;
+	background: #3498db;
+	color: white;
+	padding: 4px 12px;
+	border-radius: 20px;
+	font-weight: normal;
+}
+
+/* Category tags (visual only) */
+.productivity .todo-text::after {
+	content: " #work";
+	font-size: 12px;
+	color: #3498db;
+	background: #ebf5fb;
+	padding: 2px 8px;
+	border-radius: 12px;
+	margin-left: 8px;
+	font-weight: 500;
+}
+
+.productivity .todo-item:nth-child(even) .todo-text::after {
+	content: " #personal";
+	color: #9b59b6;
+	background: #f4ecf7;
+}
+
+.productivity .todo-item:nth-child(3n) .todo-text::after {
+	content: " #urgent";
+	color: #e74c3c;
+	background: #fadbd8;
+}

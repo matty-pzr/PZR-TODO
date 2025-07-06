@@ -1,0 +1,362 @@
+/* Desktop-First Responsive Todo App Styles */
+
+/* Main app container - optimized for desktop */
+.app {
+	width: 100%;
+	max-width: 1200px; /* Comfortable desktop width */
+	margin: 0 auto;
+	padding: 3rem 2rem; /* Desktop padding */
+	font-family: system-ui, -apple-system, Arial, sans-serif;
+	position: relative;
+	min-height: 100vh;
+	box-sizing: border-box;
+}
+
+/* Responsive typography - desktop sizes */
+h1 {
+	color: #333;
+	text-align: center;
+	margin-bottom: 2rem;
+	font-size: 2.5rem; /* Desktop font size */
+}
+
+/* Add todo section - horizontal layout for desktop */
+.add-todo-section {
+	display: flex;
+	flex-direction: row; /* Side by side on desktop */
+	gap: 1rem;
+	margin-bottom: 2rem;
+}
+
+/* Input field - optimized for desktop */
+.todo-input {
+	flex: 1;
+	padding: 1rem 1.25rem;
+	font-size: 16px;
+	border: 2px solid #ddd;
+	border-radius: 8px;
+	outline: none;
+	min-height: 50px; /* Comfortable desktop size */
+	transition: border-color 0.2s ease;
+}
+
+.todo-input:focus {
+	border-color: #4CAF50;
+	box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+/* Add button - desktop optimized */
+.add-button {
+	padding: 1rem 2rem;
+	font-size: 1.1rem;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	min-height: 50px;
+	font-weight: 600;
+}
+
+.add-button:hover {
+	background-color: #45a049;
+	transform: translateY(-1px);
+	box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.add-button:active {
+	transform: translateY(0);
+}
+
+/* Todos list container - desktop spacing */
+.todos-list {
+	background-color: #f9f9f9;
+	border-radius: 12px;
+	padding: 2rem; /* Desktop padding */
+	min-height: 200px;
+}
+
+/* Empty state message */
+.empty-message {
+	text-align: center;
+	color: #999;
+	font-style: italic;
+	padding: 3rem 2rem;
+}
+
+/* Remove default list styles */
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* Individual todo item - desktop layout */
+.todo-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 1.5rem;
+	margin-bottom: 0.75rem;
+	background-color: white;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	transition: all 0.2s ease;
+	gap: 1rem;
+}
+
+.todo-item:hover {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	transform: translateY(-1px);
+}
+
+/* Todo text - desktop optimized */
+.todo-text {
+	flex: 1;
+	cursor: pointer;
+	user-select: none;
+	transition: all 0.3s;
+	word-break: break-word;
+	padding: 0.5rem 0;
+	min-height: 40px;
+	display: flex;
+	align-items: center;
+	font-size: 1.1rem; /* Larger text for desktop */
+}
+
+/* Completed todo style */
+.todo-text.completed {
+	text-decoration: line-through;
+	color: #999;
+	opacity: 0.7;
+}
+
+/* Delete button - desktop size */
+.delete-button {
+	padding: 0.6rem 1.25rem;
+	font-size: 0.95rem;
+	background-color: #f44336;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	min-height: 40px;
+	white-space: nowrap;
+}
+
+.delete-button:hover {
+	background-color: #d32f2f;
+	transform: scale(1.05);
+}
+
+/* Theme selector - responsive positioning */
+select {
+	font-family: inherit;
+}
+
+/* Manual Dark Mode Styles */
+.dark-mode .app {
+	color: #f0f0f0;
+}
+
+.dark-mode h1 {
+	color: #f0f0f0;
+}
+
+.dark-mode .todo-input {
+	background-color: #2a2a2a;
+	border-color: #444;
+	color: #f0f0f0;
+}
+
+.dark-mode .todo-input:focus {
+	border-color: #66ff66;
+	box-shadow: 0 0 0 3px rgba(102, 255, 102, 0.1);
+}
+
+.dark-mode .todos-list {
+	background-color: #1a1a1a;
+}
+
+.dark-mode .todo-item {
+	background-color: #2a2a2a;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .todo-item:hover {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .empty-message {
+	color: #888;
+}
+
+.dark-mode .add-button {
+	background-color: #66ff66;
+	color: #1a1a1a;
+}
+
+.dark-mode .add-button:hover {
+	background-color: #55ee55;
+}
+
+.dark-mode .delete-button {
+	background-color: #ff5555;
+}
+
+.dark-mode .delete-button:hover {
+	background-color: #ff3333;
+}
+
+/* Tablet styles (max-width: 768px) - Desktop first */
+@media (max-width: 768px) {
+	.app {
+		padding: 2rem 1.5rem;
+	}
+	
+	h1 {
+		font-size: 2rem;
+		margin-bottom: 1.5rem;
+	}
+	
+	.add-todo-section {
+		margin-bottom: 1.5rem;
+	}
+	
+	.todos-list {
+		padding: 1.5rem;
+	}
+	
+	.todo-item {
+		padding: 0.875rem 1rem;
+	}
+	
+	.todo-text {
+		font-size: 1rem;
+	}
+}
+
+/* Mobile styles (max-width: 640px) - Desktop first */
+@media (max-width: 640px) {
+	.app {
+		padding: 1rem;
+		max-width: 100%;
+	}
+	
+	h1 {
+		font-size: 1.5rem;
+		margin-bottom: 1.25rem;
+	}
+	
+	/* Stack add section vertically on mobile */
+	.add-todo-section {
+		flex-direction: column;
+		gap: 0.75rem;
+		margin-bottom: 1.25rem;
+	}
+	
+	.todo-input {
+		padding: 0.75rem 1rem;
+		min-height: 44px; /* Touch-friendly */
+	}
+	
+	.add-button {
+		padding: 0.75rem 1.5rem;
+		font-size: 1rem;
+		min-height: 44px;
+	}
+	
+	.todos-list {
+		padding: 1rem;
+	}
+	
+	.todo-item {
+		padding: 0.75rem;
+		margin-bottom: 0.5rem;
+	}
+	
+	.todo-text {
+		font-size: 1rem;
+		min-height: 44px; /* Touch target */
+	}
+	
+	.delete-button {
+		padding: 0.5rem 1rem;
+		font-size: 0.875rem;
+		min-height: 36px;
+	}
+	
+	/* Adjust controls position on mobile */
+	.app > div:first-child {
+		position: static !important;
+		margin-bottom: 1rem;
+		justify-content: center;
+	}
+}
+
+/* Small mobile styles (max-width: 480px) */
+@media (max-width: 480px) {
+	/* Stack controls vertically on very small screens */
+	.app > div:first-child {
+		flex-direction: column !important;
+		gap: 0.5rem !important;
+	}
+	
+	.app > div:first-child button,
+	.app > div:first-child select {
+		width: 100%;
+	}
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+	outline: 2px solid #4CAF50;
+	outline-offset: 2px;
+}
+
+.dark-mode *:focus-visible {
+	outline-color: #66ff66;
+}
+
+/* Animations for smooth interactions */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.todo-item {
+	animation: fadeIn 0.3s ease;
+}
+
+/* Print styles */
+@media print {
+	.add-todo-section,
+	.delete-button,
+	select,
+	button {
+		display: none !important;
+	}
+	
+	.todo-item {
+		box-shadow: none;
+		border: 1px solid #ddd;
+	}
+	
+	.dark-mode {
+		color: #000 !important;
+		background: #fff !important;
+	}
+	
+	.dark-mode .todo-item {
+		background: #fff !important;
+		color: #000 !important;
+	}
+}

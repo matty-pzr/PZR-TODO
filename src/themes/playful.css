@@ -1,0 +1,207 @@
+/* Playful/Colorful Theme */
+/* Fun, vibrant design with gradients, animations, and rounded corners */
+
+/* Main app container */
+.playful .app {
+	width: 100%;
+	margin: 0;
+	padding: 2rem 15%;
+	font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded MT Bold', sans-serif;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	min-height: 100vh;
+}
+
+/* App title */
+.playful h1 {
+	color: white;
+	text-align: center;
+	margin-bottom: 2rem;
+	font-size: 3rem;
+	text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+	animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-10px); }
+}
+
+/* Add todo section */
+.playful .add-todo-section {
+	display: flex;
+	gap: 15px;
+	margin-bottom: 2rem;
+	background: rgba(255, 255, 255, 0.95);
+	padding: 1.5rem;
+	border-radius: 25px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Input field for new todos */
+.playful .todo-input {
+	flex: 1;
+	padding: 14px 20px;
+	font-size: 16px;
+	border: 3px solid #fbbf24;
+	border-radius: 50px;
+	outline: none;
+	background: white;
+	transition: all 0.3s ease;
+}
+
+.playful .todo-input:focus {
+	border-color: #f59e0b;
+	transform: scale(1.02);
+	box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+}
+
+.playful .todo-input::placeholder {
+	color: #9ca3af;
+	font-style: italic;
+}
+
+/* Add button */
+.playful .add-button {
+	padding: 14px 30px;
+	font-size: 16px;
+	background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+	color: white;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.playful .add-button:hover {
+	transform: translateY(-2px) scale(1.05);
+	box-shadow: 0 10px 20px rgba(245, 87, 108, 0.4);
+}
+
+.playful .add-button:active {
+	transform: translateY(0) scale(0.98);
+}
+
+/* Todos list container */
+.playful .todos-list {
+	background: rgba(255, 255, 255, 0.95);
+	border-radius: 25px;
+	padding: 25px;
+	min-height: 200px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Empty state message */
+.playful .empty-message {
+	text-align: center;
+	color: #6b7280;
+	font-style: italic;
+	font-size: 18px;
+	margin-top: 2rem;
+}
+
+/* Individual todo item */
+.playful .todo-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px 20px;
+	margin-bottom: 15px;
+	background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+	border-radius: 20px;
+	box-shadow: 0 4px 15px rgba(250, 112, 154, 0.3);
+	transition: all 0.3s ease;
+	animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.playful .todo-item:hover {
+	transform: translateY(-3px) scale(1.02);
+	box-shadow: 0 8px 25px rgba(250, 112, 154, 0.4);
+}
+
+/* Alternate colors for todo items */
+.playful .todo-item:nth-child(even) {
+	background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+	box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+}
+
+.playful .todo-item:nth-child(even):hover {
+	box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+}
+
+.playful .todo-item:nth-child(3n) {
+	background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+	box-shadow: 0 4px 15px rgba(67, 233, 123, 0.3);
+}
+
+.playful .todo-item:nth-child(3n):hover {
+	box-shadow: 0 8px 25px rgba(67, 233, 123, 0.4);
+}
+
+/* Todo text */
+.playful .todo-text {
+	flex: 1;
+	cursor: pointer;
+	user-select: none;
+	transition: all 0.3s;
+	font-size: 16px;
+	color: white;
+	font-weight: 600;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Completed todo style */
+.playful .todo-text.completed {
+	text-decoration: line-through wavy;
+	opacity: 0.7;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+/* Delete button */
+.playful .delete-button {
+	padding: 8px 16px;
+	font-size: 14px;
+	background: rgba(255, 255, 255, 0.9);
+	color: #e11d48;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-weight: bold;
+}
+
+.playful .delete-button:hover {
+	background: #e11d48;
+	color: white;
+	transform: rotate(5deg) scale(1.1);
+	box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4);
+}
+
+/* Add some emoji support */
+.playful .add-button::before {
+	content: "✨ ";
+}
+
+.playful .delete-button::before {
+	content: "🗑️ ";
+}
+
+.playful .empty-message::before {
+	content: "😴 ";
+}
+
+.playful .empty-message::after {
+	content: " 🎯";
+}
