@@ -17,8 +17,8 @@ function App() {
 	// Productivity theme is always active
 	const currentTheme = 'productivity'
 	
-	// Layout composition state
-	const [currentLayout, setCurrentLayout] = useState('side-by-side')
+	// Show/hide description state
+	const [showDescription, setShowDescription] = useState(true)
 
 	// Function to add a new todo
 	const addTodo = () => {
@@ -113,7 +113,7 @@ function App() {
 	return (
 		<div className={currentTheme}>
 			<div className="app">
-				{/* Layout Switcher */}
+				{/* Description Toggle */}
 				<div style={{ 
 					position: 'absolute', 
 					top: '20px', 
@@ -121,8 +121,8 @@ function App() {
 					zIndex: 1000
 				}}>
 					<select 
-						value={currentLayout} 
-						onChange={(e) => setCurrentLayout(e.target.value)}
+						value={showDescription ? 'show' : 'hide'} 
+						onChange={(e) => setShowDescription(e.target.value === 'show')}
 						style={{
 							padding: '8px 16px',
 							borderRadius: '6px',
@@ -133,19 +133,16 @@ function App() {
 							color: '#333'
 						}}
 					>
-						<option value="side-by-side">Side by Side</option>
-						<option value="stacked">Stacked</option>
-						<option value="compact">Compact</option>
-						<option value="card">Card Style</option>
-						<option value="minimal">Minimal</option>
+						<option value="show">Show Description</option>
+						<option value="hide">Hide Description</option>
 					</select>
 				</div>
 				
 				<h1>My Todo List</h1>
 			
 			{/* Input section for adding new todos */}
-			<div className={`add-todo-wrapper layout-${currentLayout}`}>
-				<div className="add-todo-section">
+			<div className="add-todo-wrapper">
+				<div className="add-todo-section card-style">
 					<div className="input-fields">
 						<input
 							type="text"
@@ -155,46 +152,23 @@ function App() {
 							placeholder="Title"
 							className="todo-input title-input"
 						/>
-						<textarea
-							value={descriptionValue}
-							onChange={(e) => setDescriptionValue(e.target.value)}
-							onKeyPress={handleKeyPress}
-							placeholder="Description (optional)"
-							className="todo-input description-input"
-							rows="3"
-						/>
-						<div className="image-upload-inner">
-							<label className="image-upload-label">
-								<span>Add Image</span>
-								<input
-									type="file"
-									accept="image/*"
-									onChange={handleNewTodoImage}
-									style={{ display: 'none' }}
-								/>
-							</label>
-							{imagePreview && (
-								<div className="image-preview">
-									<img src={imagePreview.url} alt="Preview" />
-									<button 
-										onClick={() => setImagePreview(null)}
-										className="remove-preview"
-									>
-										×
-									</button>
-								</div>
-							)}
-						</div>
+						{showDescription && (
+							<textarea
+								value={descriptionValue}
+								onChange={(e) => setDescriptionValue(e.target.value)}
+								onKeyPress={handleKeyPress}
+								placeholder="Description (optional)"
+								className="todo-input description-input"
+								rows="3"
+							/>
+						)}
 					</div>
-					<button onClick={addTodo} className="add-button">
-						Add Todo
-					</button>
-				</div>
-				{/* Separate image section for side-by-side layout */}
-				{currentLayout === 'side-by-side' && (
-					<div className="image-upload-section">
-						<label className="image-upload-label">
-							<span>Add Image (optional)</span>
+					
+					{/* Image upload options */}
+					<div className="image-section">
+						{/* Option 1: Icon button */}
+						<label className="image-icon-btn" title="Add image">
+							📸
 							<input
 								type="file"
 								accept="image/*"
@@ -202,19 +176,45 @@ function App() {
 								style={{ display: 'none' }}
 							/>
 						</label>
-						{imagePreview && (
-							<div className="image-preview">
-								<img src={imagePreview.url} alt="Preview" />
-								<button 
-									onClick={() => setImagePreview(null)}
-									className="remove-preview"
-								>
-									×
-								</button>
-							</div>
-						)}
+						
+						{/* Option 2: Drag and drop area */}
+						<div className="image-drop-area">
+							<label>
+								<div className="drop-content">
+									{imagePreview ? (
+										<div className="image-preview-inline">
+											<img src={imagePreview.url} alt="Preview" />
+											<button 
+												onClick={(e) => {
+													e.preventDefault();
+													setImagePreview(null);
+												}}
+												className="remove-preview"
+											>
+												×
+											</button>
+										</div>
+									) : (
+										<>
+											<span className="drop-icon">🖼️</span>
+											<span className="drop-text">Drop image or click</span>
+										</>
+									)}
+								</div>
+								<input
+									type="file"
+									accept="image/*"
+									onChange={handleNewTodoImage}
+									style={{ display: 'none' }}
+								/>
+							</label>
+						</div>
 					</div>
-				)}
+					
+					<button onClick={addTodo} className="add-button">
+						Add Todo
+					</button>
+				</div>
 			</div>
 
 			{/* List of todos */}
