@@ -34,7 +34,7 @@
 /* Add todo section */
 .productivity .add-todo-section {
 	display: flex;
-	gap: 12px;
+	gap: 20px;
 	margin-bottom: 2rem;
 	background: white;
 	padding: 1.75rem;
@@ -43,9 +43,16 @@
 	border: 1px solid #e1e8ed;
 }
 
-/* Input field for new todos */
-.productivity .todo-input {
+/* Input fields container */
+.productivity .input-fields {
 	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+/* Input fields for new todos */
+.productivity .todo-input {
 	padding: 14px 18px;
 	font-size: 16px;
 	border: 2px solid #dfe6ec;
@@ -53,6 +60,13 @@
 	outline: none;
 	background: #fafbfc;
 	transition: all 0.2s ease;
+	font-family: inherit;
+	width: 100%;
+}
+
+.productivity .description-input {
+	resize: vertical;
+	min-height: 80px;
 }
 
 .productivity .todo-input:focus {
@@ -75,6 +89,7 @@
 	display: flex;
 	align-items: center;
 	gap: 8px;
+	align-self: flex-end;
 }
 
 .productivity .add-button::before {
@@ -165,20 +180,35 @@
 	box-shadow: 0 3px 8px rgba(52, 152, 219, 0.15);
 }
 
-/* Todo text */
-.productivity .todo-text {
+/* Todo content */
+.productivity .todo-content {
 	flex: 1;
 	transition: all 0.3s;
-	font-size: 16px;
+}
+
+.productivity .todo-title {
+	font-size: 18px;
 	color: #2c3e50;
-	line-height: 1.5;
+	margin: 0;
+	font-weight: 600;
+}
+
+.productivity .todo-description {
+	font-size: 14px;
+	color: #7f8c8d;
+	margin: 4px 0 0 0;
+	line-height: 1.4;
 }
 
 /* Completed todo style */
-.productivity .todo-text.completed {
+.productivity .todo-content.completed .todo-title {
 	text-decoration: line-through;
 	color: #95a5a6;
-	font-style: italic;
+}
+
+.productivity .todo-content.completed .todo-description {
+	color: #bdc3c7;
+	text-decoration: line-through;
 }
 
 .productivity .todo-item:has(.todo-text.completed) {
@@ -223,13 +253,70 @@
 
 /* Remove hashtag styles - no longer needed */
 
-/* Checkbox button styles */
-.productivity .checkbox-btn {
+/* Image upload for new todo */
+.productivity .image-upload-section {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.productivity .image-upload-label {
+	display: inline-flex;
+	align-items: center;
+	padding: 8px 16px;
+	background-color: #ecf0f1;
+	border: 1px solid #dfe6ec;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-size: 14px;
+	color: #7f8c8d;
+}
+
+.productivity .image-upload-label:hover {
+	background-color: #dfe6ec;
+	border-color: #bdc3c7;
+}
+
+.productivity .image-preview {
+	position: relative;
+	width: 80px;
+	height: 80px;
+	border-radius: 6px;
+	overflow: hidden;
+}
+
+.productivity .image-preview img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.productivity .remove-preview {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	background: rgba(231, 76, 60, 0.9);
+	color: white;
+	border: none;
+	border-radius: 50%;
 	width: 24px;
 	height: 24px;
-	min-width: 24px;
+	font-size: 18px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Checkbox button styles */
+.productivity .checkbox-btn {
+	width: 28px;
+	height: 28px;
+	min-width: 28px;
+	min-height: 28px;
 	padding: 0;
-	border: 2px solid #95a5a6;
+	border: 3px solid #95a5a6;
 	border-radius: 4px;
 	background-color: white;
 	cursor: pointer;
@@ -237,7 +324,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 16px;
+	font-size: 18px;
 	color: white;
 	flex-shrink: 0;
 }
@@ -259,19 +346,27 @@
 
 /* Media upload button */
 .productivity .media-upload-btn {
-	padding: 8px 12px;
-	font-size: 20px;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	font-size: 24px;
+	font-weight: 300;
 	background-color: #ecf0f1;
 	border: 1px solid #dfe6ec;
 	border-radius: 5px;
 	cursor: pointer;
 	transition: all 0.2s ease;
 	margin: 0 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #7f8c8d;
 }
 
 .productivity .media-upload-btn:hover {
 	background-color: #3498db;
 	border-color: #3498db;
+	color: white;
 }
 
 /* Media display container */
