@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import './responsive.css' // Import responsive utilities
 import './themes/productivity.css' // Productivity theme only
+import './themes/layouts.css' // Layout compositions
 
 function App() {
 	// State to hold our list of todos
@@ -15,6 +16,9 @@ function App() {
 	
 	// Productivity theme is always active
 	const currentTheme = 'productivity'
+	
+	// Layout composition state
+	const [currentLayout, setCurrentLayout] = useState('side-by-side')
 
 	// Function to add a new todo
 	const addTodo = () => {
@@ -109,28 +113,85 @@ function App() {
 	return (
 		<div className={currentTheme}>
 			<div className="app">
+				{/* Layout Switcher */}
+				<div style={{ 
+					position: 'absolute', 
+					top: '20px', 
+					right: '20px',
+					zIndex: 1000
+				}}>
+					<select 
+						value={currentLayout} 
+						onChange={(e) => setCurrentLayout(e.target.value)}
+						style={{
+							padding: '8px 16px',
+							borderRadius: '6px',
+							border: '1px solid #ddd',
+							fontSize: '14px',
+							cursor: 'pointer',
+							background: 'white',
+							color: '#333'
+						}}
+					>
+						<option value="side-by-side">Side by Side</option>
+						<option value="stacked">Stacked</option>
+						<option value="compact">Compact</option>
+						<option value="card">Card Style</option>
+						<option value="minimal">Minimal</option>
+					</select>
+				</div>
 				
 				<h1>My Todo List</h1>
 			
 			{/* Input section for adding new todos */}
-			<div className="add-todo-section">
-				<div className="input-fields">
-					<input
-						type="text"
-						value={titleValue}
-						onChange={(e) => setTitleValue(e.target.value)}
-						onKeyPress={handleKeyPress}
-						placeholder="Title"
-						className="todo-input title-input"
-					/>
-					<textarea
-						value={descriptionValue}
-						onChange={(e) => setDescriptionValue(e.target.value)}
-						onKeyPress={handleKeyPress}
-						placeholder="Description (optional)"
-						className="todo-input description-input"
-						rows="3"
-					/>
+			<div className={`add-todo-wrapper layout-${currentLayout}`}>
+				<div className="add-todo-section">
+					<div className="input-fields">
+						<input
+							type="text"
+							value={titleValue}
+							onChange={(e) => setTitleValue(e.target.value)}
+							onKeyPress={handleKeyPress}
+							placeholder="Title"
+							className="todo-input title-input"
+						/>
+						<textarea
+							value={descriptionValue}
+							onChange={(e) => setDescriptionValue(e.target.value)}
+							onKeyPress={handleKeyPress}
+							placeholder="Description (optional)"
+							className="todo-input description-input"
+							rows="3"
+						/>
+						<div className="image-upload-inner">
+							<label className="image-upload-label">
+								<span>Add Image</span>
+								<input
+									type="file"
+									accept="image/*"
+									onChange={handleNewTodoImage}
+									style={{ display: 'none' }}
+								/>
+							</label>
+							{imagePreview && (
+								<div className="image-preview">
+									<img src={imagePreview.url} alt="Preview" />
+									<button 
+										onClick={() => setImagePreview(null)}
+										className="remove-preview"
+									>
+										×
+									</button>
+								</div>
+							)}
+						</div>
+					</div>
+					<button onClick={addTodo} className="add-button">
+						Add Todo
+					</button>
+				</div>
+				{/* Separate image section for side-by-side layout */}
+				{currentLayout === 'side-by-side' && (
 					<div className="image-upload-section">
 						<label className="image-upload-label">
 							<span>Add Image (optional)</span>
@@ -153,10 +214,7 @@ function App() {
 							</div>
 						)}
 					</div>
-				</div>
-				<button onClick={addTodo} className="add-button">
-					Add Todo
-				</button>
+				)}
 			</div>
 
 			{/* List of todos */}

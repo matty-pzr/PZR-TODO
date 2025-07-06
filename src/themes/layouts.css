@@ -1,0 +1,218 @@
+/* 5 Different Layout Compositions for Todo Creation */
+
+/* Layout 1: Side by Side (Current) - Title and Description horizontal */
+.productivity .layout-side-by-side .add-todo-section {
+	display: flex;
+	gap: 20px;
+	align-items: flex-start;
+}
+
+.productivity .layout-side-by-side .input-fields {
+	flex: 1;
+	display: flex;
+	gap: 12px;
+}
+
+.productivity .layout-side-by-side .title-input {
+	flex: 0 0 300px;
+}
+
+.productivity .layout-side-by-side .description-input {
+	flex: 1;
+}
+
+.productivity .layout-side-by-side .image-upload-inner {
+	display: none;
+}
+
+/* Keep the old separate image section for side-by-side */
+.productivity .layout-side-by-side .image-upload-section {
+	display: flex !important;
+}
+
+/* Layout 2: Stacked - All fields vertical */
+.productivity .layout-stacked .add-todo-section {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.productivity .layout-stacked .input-fields {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.productivity .layout-stacked .title-input,
+.productivity .layout-stacked .description-input {
+	width: 100%;
+}
+
+.productivity .layout-stacked .add-button {
+	align-self: stretch;
+}
+
+.productivity .layout-stacked .image-upload-inner {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+/* Layout 3: Compact - Everything in one line */
+.productivity .layout-compact .add-todo-section {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+}
+
+.productivity .layout-compact .input-fields {
+	flex: 1;
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.productivity .layout-compact .title-input {
+	flex: 0 0 200px;
+}
+
+.productivity .layout-compact .description-input {
+	flex: 1;
+	min-height: 40px;
+	resize: none;
+}
+
+.productivity .layout-compact .image-upload-label {
+	padding: 8px;
+	min-width: auto;
+}
+
+.productivity .layout-compact .image-upload-label span {
+	display: none;
+}
+
+.productivity .layout-compact .image-upload-label::before {
+	content: "📷";
+	font-size: 20px;
+}
+
+.productivity .layout-compact .add-button {
+	padding: 10px 20px;
+}
+
+/* Layout 4: Card Style - Two column card layout */
+.productivity .layout-card .add-todo-section {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 24px;
+	padding: 2rem;
+	background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	border: none;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.productivity .layout-card .input-fields {
+	display: grid;
+	gap: 16px;
+}
+
+.productivity .layout-card .title-input {
+	font-size: 18px;
+	font-weight: 600;
+	border: none;
+	background: white;
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.productivity .layout-card .description-input {
+	border: none;
+	background: white;
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.productivity .layout-card .image-upload-inner {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.productivity .layout-card .add-button {
+	align-self: center;
+	padding: 16px 32px;
+	font-size: 18px;
+	border-radius: 30px;
+	box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+}
+
+/* Layout 5: Minimal - Ultra clean, focused */
+.productivity .layout-minimal .add-todo-section {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.productivity .layout-minimal .input-fields {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.productivity .layout-minimal .todo-input {
+	border: none;
+	border-bottom: 2px solid #e1e8ed;
+	border-radius: 0;
+	background: transparent;
+	padding: 12px 0;
+	font-size: 18px;
+}
+
+.productivity .layout-minimal .todo-input:focus {
+	border-bottom-color: #3498db;
+	box-shadow: none;
+}
+
+.productivity .layout-minimal .title-input {
+	font-size: 24px;
+	font-weight: 300;
+}
+
+.productivity .layout-minimal .description-input {
+	font-size: 16px;
+	min-height: 40px;
+}
+
+.productivity .layout-minimal .image-upload-inner {
+	margin-top: 8px;
+}
+
+.productivity .layout-minimal .image-upload-label {
+	background: transparent;
+	border: 2px dashed #dfe6ec;
+	color: #95a5a6;
+}
+
+.productivity .layout-minimal .add-button {
+	background: transparent;
+	color: #3498db;
+	border: 2px solid #3498db;
+	padding: 12px 24px;
+	align-self: flex-start;
+	margin-top: 8px;
+}
+
+.productivity .layout-minimal .add-button:hover {
+	background: #3498db;
+	color: white;
+}
+
+/* Remove the separate image upload section for new layouts */
+.productivity .layout-stacked .image-upload-section,
+.productivity .layout-compact .image-upload-section,
+.productivity .layout-card .image-upload-section,
+.productivity .layout-minimal .image-upload-section {
+	display: none !important;
+}
