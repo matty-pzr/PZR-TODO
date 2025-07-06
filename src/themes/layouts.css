@@ -1,191 +1,137 @@
-/* Card Style Layout with Enhanced Features */
+/* Professional Todo Entry Form - Clean and Properly Sized */
 
-/* Remove old image upload section styles */
-.productivity .image-upload-section {
-	display: none !important;
-}
-
-/* Main card style container */
-.productivity .add-todo-section.card-style {
+/* Main add todo section container */
+.productivity .add-todo-section {
 	display: flex;
-	gap: 20px;
-	padding: 2rem;
-	background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-	border: none;
-	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-	border-radius: 12px;
+	gap: 12px;
 	align-items: flex-start;
+	margin-bottom: 2rem;
+	padding: 1.5rem;
+	background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	border-radius: 12px;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Input fields section */
-.productivity .card-style .input-fields {
+/* Form container */
+.productivity .todo-entry-form {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
-}
-
-/* Title input - card style */
-.productivity .card-style .title-input {
-	font-size: 18px;
-	font-weight: 600;
-	border: none;
-	background: white;
-	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
-	padding: 16px 20px;
-}
-
-/* Description input - card style */
-.productivity .card-style .description-input {
-	border: none;
-	background: white;
-	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
-	padding: 16px 20px;
-	resize: vertical;
-	min-height: 80px;
-}
-
-/* Image section with multiple options */
-.productivity .image-section {
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	align-items: center;
-}
-
-/* Option 1: Camera icon button */
-.productivity .image-icon-btn {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background: white;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 24px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	border: 2px solid transparent;
-}
-
-.productivity .image-icon-btn:hover {
-	transform: scale(1.1);
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-	border-color: #3498db;
-}
-
-/* Option 2: Drag and drop area */
-.productivity .image-drop-area {
-	width: 120px;
-	height: 120px;
-	border: 2px dashed #bdc3c7;
-	border-radius: 8px;
-	background: rgba(255, 255, 255, 0.5);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-	transition: all 0.3s ease;
+	gap: 8px;
+	max-width: 400px; /* Reasonable width limit */
 	position: relative;
-	overflow: hidden;
 }
 
-.productivity .image-drop-area:hover {
+/* Title input - properly sized */
+.productivity .todo-title-input {
+	font-size: 15px;
+	padding: 8px 40px 8px 12px; /* Space for description toggle button */
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	border-radius: 6px;
+	background: rgba(255, 255, 255, 0.9);
+	color: #2c3e50;
+	outline: none;
+	transition: all 0.2s ease;
+	height: 38px; /* Fixed, reasonable height */
+	width: 100%;
+}
+
+.productivity .todo-title-input:focus {
 	border-color: #3498db;
-	background: rgba(255, 255, 255, 0.8);
+	background: white;
+	box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
-.productivity .drop-content {
-	text-align: center;
-	pointer-events: none;
-}
-
-.productivity .drop-icon {
-	font-size: 32px;
-	display: block;
-	margin-bottom: 4px;
-	opacity: 0.6;
-}
-
-.productivity .drop-text {
-	font-size: 12px;
+.productivity .todo-title-input::placeholder {
 	color: #7f8c8d;
-	display: block;
 }
 
-/* Image preview in drop area */
-.productivity .image-preview-inline {
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-
-.productivity .image-preview-inline img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.productivity .image-preview-inline .remove-preview {
+/* Description toggle button */
+.productivity .description-toggle {
 	position: absolute;
-	top: 4px;
-	right: 4px;
-	background: rgba(231, 76, 60, 0.9);
-	color: white;
-	border: none;
-	border-radius: 50%;
-	width: 24px;
-	height: 24px;
+	right: 8px;
+	top: 8px;
+	width: 22px;
+	height: 22px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	background: rgba(255, 255, 255, 0.5);
+	color: #7f8c8d;
 	font-size: 16px;
+	line-height: 1;
 	cursor: pointer;
+	transition: all 0.2s ease;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	opacity: 0;
-	transition: opacity 0.2s;
+	padding: 0;
 }
 
-.productivity .image-preview-inline:hover .remove-preview {
-	opacity: 1;
+.productivity .description-toggle:hover {
+	background: white;
+	color: #3498db;
+	border-color: #3498db;
 }
 
-/* Add button - positioned like side-by-side but styled for card */
-.productivity .card-style .add-button {
-	align-self: flex-end;
-	padding: 16px 32px;
-	font-size: 16px;
-	border-radius: 30px;
-	box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+/* Description textarea */
+.productivity .todo-description-input {
+	font-size: 14px;
+	padding: 8px 12px;
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	border-radius: 6px;
+	background: rgba(255, 255, 255, 0.9);
+	color: #2c3e50;
+	outline: none;
+	transition: all 0.2s ease;
+	resize: vertical;
+	min-height: 50px;
+	font-family: inherit;
+	width: 100%;
+}
+
+.productivity .todo-description-input:focus {
+	border-color: #3498db;
+	background: white;
+	box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Add button */
+.productivity .add-todo-button {
+	padding: 8px 24px;
+	font-size: 15px;
 	background-color: #3498db;
 	color: white;
 	border: none;
-	font-weight: 600;
+	border-radius: 6px;
 	cursor: pointer;
-	transition: all 0.3s ease;
+	transition: all 0.2s ease;
+	font-weight: 600;
+	height: 38px; /* Match title input height */
+	white-space: nowrap;
 }
 
-.productivity .card-style .add-button:hover {
+.productivity .add-todo-button:hover {
 	background-color: #2980b9;
-	transform: translateY(-2px);
-	box-shadow: 0 6px 16px rgba(52, 152, 219, 0.5);
+	transform: translateY(-1px);
+	box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-	.productivity .add-todo-section.card-style {
+.productivity .add-todo-button:active {
+	transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+	.productivity .add-todo-section {
 		flex-direction: column;
-		gap: 16px;
+		padding: 1rem;
 	}
 	
-	.productivity .card-style .add-button {
-		align-self: stretch;
-		width: 100%;
+	.productivity .todo-entry-form {
+		max-width: 100%;
 	}
 	
-	.productivity .image-section {
-		flex-direction: row;
-		justify-content: center;
+	.productivity .add-todo-button {
 		width: 100%;
 	}
 }
