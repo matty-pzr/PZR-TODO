@@ -118,9 +118,17 @@ function App() {
 					<ul>
 						{todos.map(todo => (
 							<li key={todo.id} className="todo-item">
+								{/* Checkbox button */}
+								<button 
+									className={`checkbox-btn ${todo.completed ? 'checked' : ''}`}
+									onClick={() => toggleTodo(todo.id)}
+									title={todo.completed ? 'Mark as incomplete' : 'Mark as complete'}
+								>
+									{todo.completed ? '✓' : ''}
+								</button>
+								
 								<span 
 									className={`todo-text ${todo.completed ? 'completed' : ''}`}
-									onClick={() => toggleTodo(todo.id)}
 								>
 									{todo.text}
 								</span>
